@@ -7,6 +7,46 @@ $(document).ready(function () {
 
     var gifs = ["Skateboarding", "Surfing", "Snowboarding", "Battlefeild 3", "Battlefeild 4", " Battlefeild V", "Fortnite", "Rock Climbing", "Dogs", "Cats", "Boats", "Wake surfing", "Rick and Morty", "Motorcycles"];
 
+    function showGifs() {
+
+        var gif = $(this).attr("data-name");
+        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=FfsRcexIXPCCc9p9uV0nTQ9veDJtzk61&q=" + gif + "&limit=10&offset=0&rating=G&lang=en";
+
+        // Creating an AJAX call for the GHIPY data
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+
+            var results = response.data;
+            // console.log(results)
+            for ( var i = 0; i < results.length; i++) {
+
+            var gifDiv = $("<div class='item'>");
+
+            var rated = results[i].rating;
+
+            console.log(results[i]);
+
+            console.log(rated);
+
+            var p = $("<p>").text("Rating: " + rated);
+
+            var gifTag = $("<img>");
+
+            gifTag.attr("src", results[i].images.fixed_height.url);
+            
+            gifDiv.append(p);
+            gifDiv.append(gifTag);
+
+            $("#gifs-appear-here").append(gifDiv);
+            }
+             
+
+        });
+
+    }
+
     // render buttons on screen...
     function renderButtons() {
 
@@ -25,41 +65,14 @@ $(document).ready(function () {
             // add button to button-div
             $("#button-div").append(btn);
         }
+       
     }
-
-    function showGifs() {
-        // somthing isnt working here
-        var gif = $(".git-btn").attr("data-name");
-        console.log(gif)
-        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=FfsRcexIXPCCc9p9uV0nTQ9veDJtzk61&q=dogs&limit=25&offset=0&rating=G&lang=en";
-
-        // Creating an AJAX call for the GHIPY data
-        $.ajax({
-            url: "https://api.giphy.com/v1/gifs/search?api_key=FfsRcexIXPCCc9p9uV0nTQ9veDJtzk61&q=dogs&limit=25&offset=0&rating=G&lang=en",
-            method: "GET"
-        }).then(function (response) {
-
-            
-            var rated = response.data.rating;
-            
-            console.log(rated);
-
-        });
-
-    }
-
-
-
-
 
     $(document).on("click", ".gif-btn", showGifs);
 
     renderButtons();
 
 });
-
-
-
 // When the user clicks on a button, the page should grab 10 static, non-animated gif images from the GIPHY API and place them on the page.
 // When the user clicks one of the still GIPHY images, the gif should animate. If the user clicks the gif again, it should stop playing.
 
