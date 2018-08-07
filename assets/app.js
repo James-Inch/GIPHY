@@ -12,28 +12,25 @@ $(document).ready(function () {
             url: queryURL,
             method: "GET"
         }).then(function (response) {
-
+            // this varible basically shortens response.data to results to make it loook nicer...
             var results = response.data;
-            // console.log(results)
+            // for eash object in the reponse, do this stuff...
             for ( var i = 0; i < results.length; i++) {
-            
+            // Make a new div with a class of item to hold each gid
             var gifDiv = $("<div class='item'>");
-
+            // stores the rating...
             var rated = results[i].rating;
-
-            console.log(results[i]);
-
-            console.log(rated);
-
+            // creates a p tag for the rating 
             var p = $("<p>").text("Rating: " + rated);
-
+            // creates and image tag for the gif
             var gifTag = $("<img>");
-
+            // this gives the new image tag an source atrribute of whichever itteration thruogh the results object its on...
             gifTag.attr("src", results[i].images.fixed_height.url);
-            
+            // this appends the new paragraph to the new gifDiv that was created 
             gifDiv.append(p);
+            // this appends the gifTag to the gifDiv
             gifDiv.append(gifTag);
-
+            // finaly this appends the difDiv to the html(inside the #gif-appear-here div)
             $("#gifs-appear-here").append(gifDiv);
             }
              
@@ -67,18 +64,18 @@ $(document).ready(function () {
 
     $(".newGif").on("click", function(event) {
         event.preventDefault();
-        
+        // this gets the value from the search bar...
         var search = $(".search").val().trim();
         console.log(search);
-        
+        // this pushes the search bar value to the gifs array
         gifs.push(search);
-
+        // this refires the render button function for the new button to be rendered
         renderButtons();
-      });
-
+    });
+    // this wires the click to the showGifs function...
     $(document).on("click", ".gif-btn", showGifs);
-
+    // this renders our original buttons
     renderButtons();
-
 });
+
 
