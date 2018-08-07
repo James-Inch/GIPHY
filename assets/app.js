@@ -16,7 +16,7 @@ $(document).ready(function () {
             var results = response.data;
             // console.log(results)
             for ( var i = 0; i < results.length; i++) {
-
+            
             var gifDiv = $("<div class='item'>");
 
             var rated = results[i].rating;
@@ -44,10 +44,11 @@ $(document).ready(function () {
 
     // render buttons on screen...
     function renderButtons() {
-
+        // so we dont get a bunch of duplicate buttons when you search....
+        $("#button-div").empty();
         // loop throught gifs array...
         for (i = 0; i < gifs.length; i++) {
-
+            
             // for each itteration...
             // create button tag...
             var btn = $("<button>");
@@ -59,9 +60,21 @@ $(document).ready(function () {
             btn.text(gifs[i]);
             // add button to button-div
             $("#button-div").append(btn);
+        
         }
        
     }
+
+    $(".newGif").on("click", function(event) {
+        event.preventDefault();
+        
+        var search = $(".search").val().trim();
+        console.log(search);
+        
+        gifs.push(search);
+
+        renderButtons();
+      });
 
     $(document).on("click", ".gif-btn", showGifs);
 
