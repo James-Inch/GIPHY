@@ -31,7 +31,7 @@ $(document).ready(function () {
             // this appends the gifTag to the gifDiv
             gifDiv.append(gifTag);
             // finaly this appends the difDiv to the html(inside the #gif-appear-here div)
-            $("#gifs-appear-here").append(gifDiv);
+            $("#gifs-appear-here").prepend(gifDiv);
             }
              
 
@@ -78,4 +78,6 @@ $(document).ready(function () {
     renderButtons();
 });
 
-
+// add code to pull still img and click function that sawps the still img for the gif... 
+// might need an if/else for pausing and unpausing gif... 
+// will probably need display none.
