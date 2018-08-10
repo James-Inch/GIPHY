@@ -14,6 +14,8 @@ $(document).ready(function () {
         }).then(function (response) {
             // this varible basically shortens response.data to results to make it loook nicer...
             var results = response.data;
+            // this will empty the gifDiv before the for loop so the user doesnt have to scroll as much
+            $("#gifs-appear-here").empty(gifDiv);
             // for eash object in the reponse, do this stuff...
             for ( var i = 0; i < results.length; i++) {
             // Make a new div with a class of item to hold each gid
@@ -31,9 +33,12 @@ $(document).ready(function () {
             // this appends the gifTag to the gifDiv
             gifDiv.append(gifTag);
             // finaly this appends the difDiv to the html(inside the #gif-appear-here div)
-            $("#gifs-appear-here").prepend(gifDiv);
+            
+            $("#gifs-appear-here").append(gifDiv);
+
+
             }
-             
+            
 
         });
 
