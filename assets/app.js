@@ -21,15 +21,15 @@ $(document).ready(function () {
             // Make a new div with a class of item to hold each gid
             var gifDiv = $("<div class='item'>");
             // stores the rating...
-            var rated = results[i].rating;
+            // var rated = results[i].rating;
             // creates a p tag for the rating 
-            var p = $("<p>").text("Rating: " + rated);
+            // var p = $("<p>").text("Rating: " + rated);
             // creates and image tag for the gif
-            var gifTag = $("<img>");
+            var gifTag = $("<img style='float:left; margin:10px;'>");
             // this gives the new image tag an source atrribute of whichever itteration thruogh the results object its on...
             gifTag.attr("src", results[i].images.fixed_height.url);
             // this appends the new paragraph to the new gifDiv that was created 
-            gifDiv.append(p);
+            // gifDiv.append(p);
             // this appends the gifTag to the gifDiv
             gifDiv.append(gifTag);
             // finaly this appends the difDiv to the html(inside the #gif-appear-here div)
